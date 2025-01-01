@@ -101,4 +101,3 @@ Connect with me:
 
 --- 
 
-Feel free to customize the README to fit your preferences or additional project features!
