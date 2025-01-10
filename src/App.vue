@@ -4,8 +4,6 @@
     <div>
       <About />
       <Projects />
-      <Education />
-      <Experience />
       <Contact />
 
     </div>
@@ -32,13 +30,18 @@ export default {
 html {
   scroll-behavior: smooth; /* Enables smooth scrolling */
 }
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
 
 #app {
   background-color: #0a192f;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  color: white;
+  width: 100%;
 }
 
 </style>

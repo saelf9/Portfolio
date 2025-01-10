@@ -7,7 +7,7 @@
         <img
             src="@/assets/pixel-avatar.png"
             alt="Profile Picture"
-            class="rounded-lg shadow-lg max-w-xs animate__animated animate__fadeIn animate__delay-1s"
+            class="rounded-lg shadow-lg max-w-xs animate__animated animate__fadeIn animate__delay-1s hover:scale-105 transition-transform duration-300"
         />
       </div>
 
@@ -34,27 +34,68 @@
 
       <!-- Right Column: Social Icons -->
       <div class="right-column flex flex-col items-center justify-start ml-8">
-        <a href="mailto:safaeelfattahi2002@gmail.com" class="text-white mb-4">
+        <a href="mailto:safaeelfattahi2002@gmail.com" class="social-icon mb-4">
           <i class="fas fa-envelope"></i>
         </a>
-        <a href="https://github.com/saelf9" target="_blank" class="text-white mb-4">
+        <a href="https://github.com/saelf9" target="_blank" class="social-icon mb-4">
           <i class="fab fa-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/safae-elfattahi-5519a8233/" target="_blank" class="text-white">
+        <a href="https://www.linkedin.com/in/safae-elfattahi-5519a8233/" target="_blank" class="social-icon">
           <i class="fab fa-linkedin"></i>
         </a>
       </div>
     </div>
+
+    <!-- Background Shapes Container -->
+    <div id="background-shapes" class="background-shapes"></div>
   </section>
 </template>
 
 <script>
 export default {
   name: "About",
+  mounted() {
+    this.createShapes();
+
+    document.addEventListener('mousemove', (e) => {
+      this.moveShapes(e);
+    });
+  },
+  methods: {
+    createShapes() {
+      const container = document.getElementById("background-shapes");
+      for (let i = 0; i < 10; i++) {
+        const shape = document.createElement("div");
+        shape.classList.add("shape");
+        container.appendChild(shape);
+      }
+    },
+    moveShapes(e) {
+      const shapes = document.querySelectorAll('.shape');
+      shapes.forEach(shape => {
+        const randomX = (Math.random() - 0.5) * 100; // random movement in X axis
+        const randomY = (Math.random() - 0.5) * 100; // random movement in Y axis
+        const speed = 0.05;
+
+        const x = e.clientX * speed + randomX;
+        const y = e.clientY * speed + randomY;
+
+        shape.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    }
+  }
 };
 </script>
 
 <style scoped>
+/* Reset overflow and layout for the body */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Hide horizontal overflow */
+}
+
+/* About section styling */
 .about-section {
   background-color: #0a192f;
   color: #ccd6f6;
@@ -65,8 +106,12 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative;
+  overflow-x: hidden; /* Prevents horizontal overflow */
+  width: 100%;
 }
 
+/* Container setup */
 .container {
   display: flex;
   justify-content: flex-start;
@@ -74,6 +119,7 @@ export default {
   gap: 4rem;
   width: 100%;
 }
+
 
 .left-column {
   display: flex;
@@ -88,6 +134,7 @@ export default {
   margin-top: 1rem;
 }
 
+
 .left-column img {
   max-width: 350px;
   width: 100%;
@@ -96,9 +143,11 @@ export default {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
+
 .text-accent {
   color: #ccd6f6;
 }
+
 
 ul {
   margin-top: 1rem;
@@ -111,39 +160,76 @@ ul {
 
 ul li {
   color: #ccd6f6;
+  transition: transform 0.3s, color 0.3s;
 }
 
+ul li:hover {
+  transform: scale(1.1); /* Slightly enlarge the item on hover */
+  color: gold; /* Change color to gold on hover */
+}
+
+/* Social icons column */
 .right-column {
   position: absolute;
   top: 50%;
-  right: 2rem; /* Adjust to the desired distance from the right edge */
+  right: 2rem;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.right-column a {
+.social-icon {
   font-size: 2rem;
   color: #ccd6f6;
   margin-bottom: 1rem;
+  transition: color 0.3s, transform 0.3s;
 }
 
+.social-icon:hover {
+  color: green; /* Green color on hover (for example, similar to LinkedIn's color) */
+  transform: scale(1.1);
+}
+.left-column img:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+/* Background shapes styling */
+.background-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+}
 
+.shape {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(255, 0, 0, 0.5);
+  animation: moveShape 6s ease-in-out infinite;
+}
 
-@media screen and (max-width: 1024px) {
-  .container {
-    flex-direction: column;
-    gap: 24px;
+.shape:nth-child(odd) {
+  background-color: rgba(0, 255, 0, 0.5);
+}
+
+.shape:nth-child(even) {
+  background-color: rgba(0, 0, 255, 0.5);
+}
+
+@keyframes moveShape {
+  0% {
+    transform: translate(0, 0);
   }
-  .left-column img {
-    max-width: 300px;
+  50% {
+    transform: translate(100px, 100px);
   }
-  .middle-column {
-    text-align: center;
-  }
-  .right-column {
-    align-items: center;
+  100% {
+    transform: translate(0, 0);
   }
 }
 </style>

@@ -27,25 +27,39 @@
   font-size: 1rem; /* Increase the navbar font size */
 }
 
-.navbar .nav-link {
-  font-size: 1.2rem; /* Increase font size for navigation links */
-}
-
 .navbar .nav-item {
   margin-left: 15px;
 }
 
 .navbar .nav-item .nav-link {
   padding: 15px; /* Increase the padding around nav links for better spacing */
+  position: relative;
+  color: white; /* Ensure the default text color is white */
+  transition: color 0.3s ease !important; /* Ensure the color change happens */
+}
+
+.navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: orange; /* Line color */
+  transition: width 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: orange !important; /* Change text color on hover */
+}
+
+.navbar .nav-link:hover::after {
+  width: 100%; /* Show the line under the link */
 }
 
 .navbar i {
   font-size: 1.5rem; /* Increase icon size */
   transition: transform 0.2s ease-in-out;
-}
-
-.navbar i:hover {
-  transform: scale(1.1); /* Slightly enlarge the icons on hover */
 }
 
 .container {
