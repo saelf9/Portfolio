@@ -10,5 +10,4 @@ export default {
 </script>
 
 <style scoped>
-/* Add Home-specific styles */
 </style>

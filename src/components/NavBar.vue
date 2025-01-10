@@ -7,54 +7,58 @@
       <!-- Navigation Links -->
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link text-white" href="#home">Home</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link text-white" href="#about">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#education">Education</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#experience">Experience</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white" href="#projects">Projects</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#contact">Contact</a>
+        </li>
       </ul>
-
-      <!-- Social Icons -->
-      <div class="d-flex">
-        <a href="mailto:safaeelfattahi2002@gmail.com" class="text-white me-3">
-          <i class="fas fa-envelope"></i>
-        </a>
-        <a href="https://github.com/saelf9" target="_blank" class="text-white me-3">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/safae-elfattahi-5519a8233/" target="_blank" class="text-white">
-          <i class="fab fa-linkedin"></i>
-        </a>
-      </div>
     </div>
   </nav>
 </template>
 
 <style scoped>
 .navbar {
-  background-color: #0a192f; /* Replace with your desired color */
-  z-index: 1030; /* Ensure it stays above other elements */
-  font-size: 0.75rem; /* Smaller text for compact navbar */
-
+  background-color: #0a192f;
+  z-index: 1030;
+  font-size: 1rem; /* Increase the navbar font size */
 }
+
+.navbar .nav-link {
+  font-size: 1.2rem; /* Increase font size for navigation links */
+}
+
+.navbar .nav-item {
+  margin-left: 15px;
+}
+
+.navbar .nav-item .nav-link {
+  padding: 15px; /* Increase the padding around nav links for better spacing */
+}
+
+.navbar i {
+  font-size: 1.5rem; /* Increase icon size */
+  transition: transform 0.2s ease-in-out;
+}
+
+.navbar i:hover {
+  transform: scale(1.1); /* Slightly enlarge the icons on hover */
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .flex.space-x-6 a {
-  padding: 0 8px; /* Adds spacing between links */
+  padding: 1px;
 }
+
 .flex.space-x-4 a {
-  font-size: 1rem;
+  font-size: 2rem;
   padding: 0 5px;
 }
 </style>

@@ -2,31 +2,28 @@
   <div id="app">
     <NavBar />
     <div>
-      <Home />
       <About />
+      <Projects />
       <Education />
       <Experience />
-      <Projects />
+      <Contact />
+
     </div>
   </div>
 </template>
 
 <script>
 import NavBar from './components/NavBar.vue';
-import Home from './components/Home.vue';
 import About from './components/about.vue';
-import Education from './components/Education.vue';
-import Experience from './components/Experience.vue';
 import Projects from './components/Projects.vue';
+import Contact from './components/Contact.vue';
 
 export default {
   components: {
     NavBar,
-    Home,
     About,
-    Education,
-    Experience,
     Projects,
+    Contact,
   },
 };
 </script>
