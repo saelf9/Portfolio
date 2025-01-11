@@ -59,6 +59,8 @@ import TaskTracker from "@/assets/task tracker app.png";
 import UFIX from "@/assets/ufix.png";
 import Chekers from "@/assets/checkers.png";
 import weather from "@/assets/weather app.png";
+import algo from "@/assets/algo.png";
+import chalet from "@/assets/chalet.png";
 export default {
   name: "Projects",
   data() {
@@ -104,6 +106,20 @@ export default {
           stack: "Node.js, Vue.js",
           github: "https://github.com/saelf9/Task-tracker",
           image: TaskTracker,
+        },
+        {
+          title: "ChatCLT",
+          description: "An app to customize your house build",
+          stack: "java, Swing,UML",
+          github: "https://github.com/saelf9/Task-tracker",
+          image: chalet,
+        },
+        {
+          title: "algorithmic optimisation",
+          description: "Efficient Shortest Path Algorithms for Routes on the RTC Network",
+          stack: "C++",
+          github: "https://github.com/saelf9/Optimisation-algorithmique",
+          image: algo,
         },
         {
           title: "Checkers Game",

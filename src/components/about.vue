@@ -164,8 +164,8 @@ ul li {
 }
 
 ul li:hover {
-  transform: scale(1.1); /* Slightly enlarge the item on hover */
-  color: gold; /* Change color to gold on hover */
+  transform: scale(1.1);
+  color: gold;
 }
 
 /* Social icons column */
@@ -187,11 +187,11 @@ ul li:hover {
 }
 
 .social-icon:hover {
-  color: green; /* Green color on hover (for example, similar to LinkedIn's color) */
+  color: green;
   transform: scale(1.1);
 }
 .left-column img:hover {
-  transform: scale(1.1); /* Slight zoom on hover */
+  transform: scale(1.1);
 }
 /* Background shapes styling */
 .background-shapes {

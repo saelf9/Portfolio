@@ -43,6 +43,6 @@ export default {
 }
 
 .social-icons a:hover {
-  color: #64ffda;
+  color: orange !important;
 }
 </style>
