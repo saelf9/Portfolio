@@ -139,9 +139,9 @@ export default {
         },
         {
           title: "ChatCLT",
-          description: "Work in progress: An app to customize your house build",
+          description: "An app to customize your house build",
           stack: "java, Swing, UML",
-          github: "https://github.com/saelf9/Task-tracker",
+          github: "https://github.com/saelf9/ChalCLT",
           image: chalet,
         },
         {
@@ -163,6 +163,10 @@ export default {
   padding-bottom: 40px;
 }
 
+.projects-section:hover h2 {
+  color: orange; /* Change the title color to orange when the section is hovered */
+  transition: color 0.3s ease; /* Smooth transition */
+}
 /* Featured Projects Zigzag Layout */
 .featured-projects {
   display: flex;
@@ -285,5 +289,9 @@ export default {
   align-self: center;
   margin-top: auto;
   z-index: 1;
+}
+.small-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 15px 15px 50px rgba(0, 65, 185, 0.3), -15px -15px 50px rgba(0, 0, 0, 0.1);
 }
 </style>
