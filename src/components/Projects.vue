@@ -3,15 +3,12 @@
     <div class="container">
       <h2 class="text-center mb-5 text-black">Projects</h2>
 
-      <!-- Featured Projects Section (Zigzag layout) -->
-      <div class="d-flex flex-column gap-4">
+      <!-- Featured Projects Section (Zigzag layout for large cards) -->
+      <div class="featured-projects">
         <div
             v-for="(project, index) in featuredProjects"
             :key="index"
-            :class="[
-      'card text-bg-dark',
-      { 'left-card': index % 2 === 0, 'right-card': index % 2 !== 0 }
-    ]"
+            :class="['card text-bg-dark project-card', { 'left-card': index % 2 === 0, 'right-card': index % 2 !== 0 }]"
         >
           <img :src="project.image" class="card-img" :alt="project.title" />
           <div class="card-img-overlay d-flex flex-column justify-content-center">
@@ -19,11 +16,7 @@
             <p class="card-text text-center">{{ project.description }}</p>
             <p class="text-info text-center">{{ project.stack }}</p>
             <div class="text-center">
-              <a
-                  :href="project.github"
-                  target="_blank"
-                  class="btn btn-outline-light btn-lg"
-              >
+              <a :href="project.github" target="_blank" class="btn btn-outline-light btn-lg">
                 <i class="fab fa-github"></i> GitHub
               </a>
             </div>
@@ -32,7 +25,7 @@
       </div>
 
       <!-- Small Cards Section -->
-      <div class="d-flex justify-content-start mt-5 flex-wrap gap-4">
+      <div class="small-projects d-flex justify-content-start mt-5 flex-wrap gap-4">
         <div v-for="(project, index) in smallProjects" :key="index" class="card small-card">
           <img :src="project.image" class="card-img" :alt="project.title" />
           <div class="card-body">
@@ -63,6 +56,7 @@ import algo from "@/assets/algo.png";
 import chalet from "@/assets/chalet.png";
 import fluid from "@/assets/matlab fluid.png";
 import matlab from "@/assets/matlab.png";
+
 export default {
   name: "Projects",
   data() {
@@ -99,7 +93,6 @@ export default {
           github: "https://github.com/saelf9/Intergalactic-coachella",
           image: intergalacticImage,
         },
-
       ],
       smallProjects: [
         {
@@ -147,20 +140,17 @@ export default {
         {
           title: "ChatCLT",
           description: "Work in progress: An app to customize your house build",
-          stack: "java, Swing,UML",
+          stack: "java, Swing, UML",
           github: "https://github.com/saelf9/Task-tracker",
           image: chalet,
         },
-
         {
           title: "Wave-Equation-Modeling",
-          description: "he numerical solution of the 2D wave equation",
+          description: "The numerical solution of the 2D wave equation",
           stack: "matlab",
           github: "https://github.com/saelf9/Wave-Equation-Modeling",
           image: matlab,
         },
-
-
       ],
     };
   },
@@ -173,40 +163,32 @@ export default {
   padding-bottom: 40px;
 }
 
-.card {
-  height: 400px;
-  border: none;
-  width: 70%;
-  margin: 0 auto;
-  margin-bottom: 30px;
+/* Featured Projects Zigzag Layout */
+.featured-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Large Cards (Zigzag Layout) */
+.project-card {
+  position: relative;
+  overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 80%;
+  margin-bottom: 70px;
+  height: 400px; /* Adjust the height for consistency */
 }
 
-.card-img {
-  object-fit: cover;
-  height: 100%;
+/* Left Card */
+.left-card {
+  align-self: flex-start;
 }
 
-.card-img-overlay {
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 2rem;
+/* Right Card */
+.right-card {
+  align-self: flex-end;
 }
-
-.card-title {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.btn-outline-light {
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.btn-outline-light:hover {
-  background-color: #fff;
-  color: #000;
-  transform: scale(1.05);
-}
-
 /* Zigzag styles for large cards */
 .left-card {
   margin-left: 5%;
@@ -215,82 +197,93 @@ export default {
 .right-card {
   margin-right: 5%;
 }
-
-/* Large card hover effect */
-.left-card, .right-card {
-  position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.card-img-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  z-index: 1; /* Keep the text above the rectangle */
+}
+/* Hover Effect for Large Cards */
+.left-card::before, .right-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(10, 5, 155);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: 0;
 }
 
-/* Hover effect: Shadow slides in from the top-left and bottom-right */
+.left-card:hover::before, .right-card:hover::before {
+  transform: scaleX(1);
+}
+
 .left-card:hover, .right-card:hover {
-  transform: translateY(-10px); /* Slight lift */
-  box-shadow: 15px 15px 50px rgba(0, 0, 0, 0.3), -15px -15px 50px rgba(0, 0, 0, 0.1); /* Sliding shadow effect */
+  transform: translateY(-10px);
+  box-shadow: 15px 15px 50px rgba(0, 65, 185, 0.3), -15px -15px 50px rgba(0, 0, 0, 0.1);
 }
 
-/* Optional: Add perspective to give the section a bit more depth */
-.projects-section {
-  perspective: 1000px;
+/* Small Cards Styling */
+.small-projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
 }
 
-/* Small Cards Section */
 .small-card {
-  width: 22%; /* Adjust width to make cards fit on one line */
+  width: 22%;
   border: none;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-  height: 250px; /* Fixed height for the card */
+  height: 250px;
   background-color: #ccd6f6;
   display: flex;
-  flex-direction: column; /* Stack content vertically */
-  overflow: hidden; /* Prevent content from overflowing */
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
-/* Image Styling */
+/* Image Styling for Small Cards */
 .small-card .card-img {
-  height: 95px; /* Adjusted image height */
+  height: 95px;
   object-fit: cover;
 }
 
-/* Card Body Styling */
+/* Card Body Styling for Small Cards */
 .small-card .card-body {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Ensures space between title, text, and button */
-  flex-grow: 1; /* Allow content to grow if necessary */
-  overflow: hidden; /* Prevents overflowing content */
+  justify-content: space-between;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
-/* Title and Text Styling */
+/* Title and Text Styling for Small Cards */
 .small-card .card-title {
   font-size: 1.1rem;
   font-weight: bold;
-  margin-bottom: 0.5rem; /* Space between title and text */
+  margin-bottom: 0.5rem;
 }
 
 .small-card .card-text {
   font-size: 0.9rem;
-  margin-bottom: 1rem; /* Space between text and button */
-  flex-grow: 1; /* Ensures space is distributed evenly */
-  overflow: hidden; /* Prevents text from overflowing */
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
-/* Button Styling */
+/* Button Styling for Small Cards */
 .small-card .btn-outline-light {
   font-size: 0.8rem;
   padding: 0.5rem;
   background-color: white;
   color: black;
-  align-self: center; /* Center the button */
-  margin-top: auto; /* Ensure the button stays at the bottom */
-  z-index: 1; /* Make sure the button stays above content */
+  align-self: center;
+  margin-top: auto;
+  z-index: 1;
 }
-
-.d-flex {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 20px; /* Space between the cards */
-}
-
 </style>
