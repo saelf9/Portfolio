@@ -61,6 +61,8 @@ import Chekers from "@/assets/checkers.png";
 import weather from "@/assets/weather app.png";
 import algo from "@/assets/algo.png";
 import chalet from "@/assets/chalet.png";
+import fluid from "@/assets/matlab fluid.png";
+import matlab from "@/assets/matlab.png";
 export default {
   name: "Projects",
   data() {
@@ -108,18 +110,11 @@ export default {
           image: TaskTracker,
         },
         {
-          title: "ChatCLT",
-          description: "An app to customize your house build",
-          stack: "java, Swing,UML",
-          github: "https://github.com/saelf9/Task-tracker",
-          image: chalet,
-        },
-        {
-          title: "algorithmic optimisation",
-          description: "Efficient Shortest Path Algorithms for Routes on the RTC Network",
+          title: "File System",
+          description: "A basic file system inspired by UFS to handle file and directory management.",
           stack: "C++",
-          github: "https://github.com/saelf9/Optimisation-algorithmique",
-          image: algo,
+          github: "https://github.com/saelf9/File-system-UFIX-",
+          image: UFIX,
         },
         {
           title: "Checkers Game",
@@ -129,18 +124,43 @@ export default {
           image: Chekers,
         },
         {
+          title: "algorithmic optimisation",
+          description: "Efficient Shortest Path Algorithms for Routes on the RTC Network",
+          stack: "C++",
+          github: "https://github.com/saelf9/Optimisation-algorithmique",
+          image: algo,
+        },
+        {
           title: "Weather Application",
-          description: "A weather app using an open weather API.",
+          description: "Work in progress: A weather app using an open weather API.",
           stack: "Vue.js, Axios",
           github: "https://github.com/saelf9/Weather-app",
           image: weather,
-        }, {
-          title: "File System",
-          description: "A basic file system inspired by UFS to handle file and directory management.",
-          stack: "C++",
-          github: "https://github.com/saelf9/File-system-UFIX-",
-          image: UFIX,
         },
+        {
+          title: "Fluid Dynamics Analysis",
+          description: "Numerical Methods Fluid Dynamics Analysis.",
+          stack: "matlab",
+          github: "https://github.com/saelf9/Numerical_Methods_Fluid_Dynamics_Analysis",
+          image: fluid,
+        },
+        {
+          title: "ChatCLT",
+          description: "Work in progress: An app to customize your house build",
+          stack: "java, Swing,UML",
+          github: "https://github.com/saelf9/Task-tracker",
+          image: chalet,
+        },
+
+        {
+          title: "Wave-Equation-Modeling",
+          description: "he numerical solution of the 2D wave equation",
+          stack: "matlab",
+          github: "https://github.com/saelf9/Wave-Equation-Modeling",
+          image: matlab,
+        },
+
+
       ],
     };
   },
