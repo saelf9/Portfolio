@@ -1,7 +1,7 @@
 <template>
   <section id="projects" class="projects-section text-white py-5">
     <div class="container">
-      <h2 class="text-center mb-5 text-black">Projects</h2>
+      <h2 class="text-center mb-5 ">Projects</h2>
 
       <!-- Featured Projects Section (Zigzag layout for large cards) -->
       <div class="featured-projects">
@@ -162,9 +162,11 @@ export default {
   background-color: white;
   padding-bottom: 40px;
 }
-
-.projects-section:hover h2 {
-  color: orange; /* Change the title color to orange when the section is hovered */
+.projects-section h2{
+  color: Black;
+}
+.projects-section h2:hover {
+  color: #ff8800; /* Change the title color to orange when the section is hovered */
   transition: color 0.3s ease; /* Smooth transition */
 }
 /* Featured Projects Zigzag Layout */
@@ -214,7 +216,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(10, 5, 155);
+  background-color: #173c72;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
@@ -243,7 +245,8 @@ export default {
   border: none;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
   height: 250px;
-  background-color: #ccd6f6;
+  background-color: #0a192f;
+  color: white;
   display: flex;
   flex-direction: column;
   overflow: hidden;
