@@ -69,7 +69,7 @@ export default {
         container.innerHTML = '';
 
         // Create more shapes (e.g., 30 for a fuller effect)
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < 20; i++) {
           const shape = document.createElementNS("http://www.w3.org/2000/svg", "svg");
           shape.setAttribute("class", "shape");
 
