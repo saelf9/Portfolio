@@ -35,8 +35,8 @@
         <p class="text-xl leading-relaxed mt-4 animate__animated animate__fadeIn animate__delay-4s">
           Beyond my studies, I am an avid video game enthusiast, I'm also drawn to social and puzzle games. I enjoy exploring new worlds, solving challenges, and engaging with others. My curiosity extends beyond the digital realm, as I am also passionate about sports. I stay active through swimming, hiking, and bodybuilding, always looking for ways to improve my physical fitness and overall well-being.
         </p>
-        <!-- Added Link to Resume -->
-        <a href="/src/assets/resume.pdf" target="_blank" class="text-xl text-accent underline hover:text-gold animate__animated animate__fadeIn animate__delay-4.5s">
+        <!-- Added Link to Resume with Hover Effect -->
+        <a href="/src/assets/resume.pdf" target="_blank" class="resume-link text-xl text-accent underline hover:text-gold animate__animated animate__fadeIn animate__delay-4.5s">
           View My Resume
         </a>
       </div>
@@ -257,7 +257,14 @@ body {
   overflow-x: hidden; /* Prevents horizontal overflow */
   width: 100%;
 }
-
+/* Hover effect for resume link */
+.resume-link {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.resume-link:hover {
+  color: #ffd700; /* Gold color on hover */
+  transform: scale(1.1); /* Slightly enlarge the link */
+}
 /* Typewriter effect */
 @keyframes typewriter {
   from { width: 0; }
