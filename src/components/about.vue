@@ -12,14 +12,19 @@
       </div>
 
       <!-- Middle Column: Text Content -->
-      <div class="middle-column text-white max-w-2xl space-y-6">
-        <p class="text-xl leading-relaxed mb-6 animate__animated animate__fadeIn animate__delay-2s">
+      <div class="middle-column text-white max-w-2xl space-y-14">
+        <!-- Added Typewriter Effect for Introduction -->
+        <h1 class="text-6xl font-extrabold mb-16">
+          <span id="typewriter" class="typewriter">Hi, I'm Safae</span>
+        </h1>
+
+        <p class="text-xl leading-relaxed mb-6 animate__animated animate__fadeIn animate__delay-2.5s">
           I am a 22-year-old Moroccan student currently studying at Université Laval. I have a strong passion for technology and mathematics, constantly seeking opportunities to create projects and deepen my understanding in these fields.
         </p>
-        <p class="text-xl leading-relaxed mb-6 animate__animated animate__fadeIn animate__delay-2.5s">
+        <p class="text-xl leading-relaxed mb-6 animate__animated animate__fadeIn animate__delay-3s">
           Here are some technologies I have been working with:
         </p>
-        <ul class="grid grid-cols-2 gap-x-8 gap-y-4 text-accent list-disc pl-5 mb-6 animate__animated animate__fadeIn animate__delay-3s">
+        <ul class="grid grid-cols-2 gap-x-8 gap-y-4 text-accent list-disc pl-5 mb-6 animate__animated animate__fadeIn animate__delay-3.5s">
           <li>Python</li>
           <li>Vue.js</li>
           <li>Java</li>
@@ -27,9 +32,13 @@
           <li>C++</li>
           <li>MATLAB</li>
         </ul>
-        <p class="text-xl leading-relaxed mt-4 animate__animated animate__fadeIn animate__delay-3.5s">
+        <p class="text-xl leading-relaxed mt-4 animate__animated animate__fadeIn animate__delay-4s">
           Beyond my studies, I am an avid video game enthusiast, I'm also drawn to social and puzzle games. I enjoy exploring new worlds, solving challenges, and engaging with others. My curiosity extends beyond the digital realm, as I am also passionate about sports. I stay active through swimming, hiking, and bodybuilding, always looking for ways to improve my physical fitness and overall well-being.
         </p>
+        <!-- Added Link to Resume -->
+        <a href="/src/assets/resume.pdf" target="_blank" class="text-xl text-accent underline hover:text-gold animate__animated animate__fadeIn animate__delay-4.5s">
+          View My Resume
+        </a>
       </div>
 
       <!-- Right Column: Social Icons -->
@@ -247,6 +256,26 @@ body {
   position: relative;
   overflow-x: hidden; /* Prevents horizontal overflow */
   width: 100%;
+}
+
+/* Typewriter effect */
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 13.5ch; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid white;
+  font-family: monospace;
+  width: 13.5ch;
+  animation: typewriter 2s steps(14, end) 1s forwards, blink 0.75s step-end infinite;
 }
 
 /* Container setup */
