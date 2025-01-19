@@ -36,7 +36,7 @@
           Beyond my studies, I am an avid video game enthusiast, I'm also drawn to social and puzzle games. I enjoy exploring new worlds, solving challenges, and engaging with others. My curiosity extends beyond the digital realm, as I am also passionate about sports. I stay active through swimming, hiking, and bodybuilding, always looking for ways to improve my physical fitness and overall well-being.
         </p>
         <!-- Added Link to Resume with Hover Effect -->
-        <a href="/src/assets/resume.pdf" target="_blank" class="resume-link text-xl text-accent underline hover:text-gold animate__animated animate__fadeIn animate__delay-4.5s">
+        <a :href="resumeUrl" target="_blank" class="resume-link text-xl text-accent underline hover:text-gold animate__animated animate__fadeIn animate__delay-4.5s">
           View My Resume
         </a>
       </div>
@@ -62,6 +62,8 @@
 
 <script>
 import { onMounted, nextTick } from 'vue';
+
+import resume from '@/assets/resume.pdf';
 
 export default {
   name: "About",
@@ -228,7 +230,8 @@ export default {
       }, 16); // Update 60 times per second (60fps)
     });
 
-    return {};
+    return {
+      resumeUrl: resume,};
   },
 };
 </script>
@@ -257,14 +260,7 @@ body {
   overflow-x: hidden; /* Prevents horizontal overflow */
   width: 100%;
 }
-/* Hover effect for resume link */
-.resume-link {
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-.resume-link:hover {
-  color: #ffd700; /* Gold color on hover */
-  transform: scale(1.1); /* Slightly enlarge the link */
-}
+
 /* Typewriter effect */
 @keyframes typewriter {
   from { width: 0; }
@@ -282,7 +278,16 @@ body {
   border-right: 3px solid white;
   font-family: monospace;
   width: 13.5ch;
-  animation: typewriter 2s steps(14, end) 1s forwards, blink 0.75s step-end infinite;
+  animation: typewriter 3s steps(14, end) 1s forwards, blink 0.75s step-end infinite;
+}
+
+/* Hover effect for resume link */
+.resume-link {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.resume-link:hover {
+  color: #ffd700; /* Gold color on hover */
+  transform: scale(1.1); /* Slightly enlarge the link */
 }
 
 /* Container setup */
