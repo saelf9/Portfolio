@@ -297,4 +297,30 @@ export default {
   transform: translateY(-10px);
   box-shadow: 15px 15px 50px rgba(0, 65, 185, 0.3), -15px -15px 50px rgba(0, 0, 0, 0.1);
 }
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .featured-projects {
+    display: flex;
+    flex-direction: column; /* Align projects vertically */
+    gap: 20px;
+  }
+
+  .left-card, .right-card {
+    align-self: center; /* Centers projects instead of zigzag */
+    width: 100%;
+  }
+
+  /* Small Project Cards Layout */
+  .small-projects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Ensure 2 columns per row */
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .small-card {
+    width: 100%; /* Ensures even distribution */
+  }
+}
+
 </style>

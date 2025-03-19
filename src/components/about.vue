@@ -54,185 +54,18 @@
         </a>
       </div>
     </div>
-
-    <!-- Background Shapes Container -->
-    <div id="background-shapes" class="background-shapes"></div>
   </section>
 </template>
-
 <script>
-import { onMounted, nextTick } from 'vue';
-
-import resume from '@/assets/resume.pdf';
+import resume from '@/assets/resume.pdf'; // Ensure the path is correct
 
 export default {
   name: "About",
-  setup() {
-    let mouseX = 0;
-    let mouseY = 0;
-    let shapes = [];
-    let isMouseMoving = false;
-
-    const createShapes = () => {
-      nextTick(() => {
-        const container = document.getElementById("background-shapes");
-        if (!container) return;
-        container.innerHTML = '';
-
-        // Create more shapes (e.g., 30 for a fuller effect)
-        for (let i = 0; i < 20; i++) {
-          const shape = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-          shape.setAttribute("class", "shape");
-
-          // Set size between 5px and 20px (smaller sizes)
-          const size = Math.random() * 15 + 5; // Size between 5px and 20px
-          shape.setAttribute("width", size);
-          shape.setAttribute("height", size);
-
-          // Random shape type (circle, ellipse, rectangle, triangle, polygon)
-          const shapeType = Math.floor(Math.random() * 5); // 5 types of shapes
-          let svgElement;
-
-          if (shapeType === 0) {
-            // Circle
-            svgElement = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            svgElement.setAttribute("cx", size / 2);
-            svgElement.setAttribute("cy", size / 2);
-            svgElement.setAttribute("r", size / 2);
-          } else if (shapeType === 1) {
-            // Ellipse
-            svgElement = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-            svgElement.setAttribute("cx", size / 2);
-            svgElement.setAttribute("cy", size / 2);
-            svgElement.setAttribute("rx", size / 2);
-            svgElement.setAttribute("ry", size / 3);
-          } else if (shapeType === 2) {
-            // Rectangle
-            svgElement = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            svgElement.setAttribute("x", 0);
-            svgElement.setAttribute("y", 0);
-            svgElement.setAttribute("width", size);
-            svgElement.setAttribute("height", size);
-          } else if (shapeType === 3) {
-            // Triangle
-            svgElement = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-            const points = `${size / 2},0 ${size},${size} 0,${size}`;
-            svgElement.setAttribute("points", points);
-          } else {
-            // Polygon with random sides (3 to 7 sides)
-            const sides = Math.floor(Math.random() * 5) + 3;
-            let points = '';
-            for (let j = 0; j < sides; j++) {
-              const angle = (j * 2 * Math.PI) / sides;
-              const x = size / 2 + Math.cos(angle) * size / 2;
-              const y = size / 2 + Math.sin(angle) * size / 2;
-              points += `${x},${y} `;
-            }
-            svgElement = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-            svgElement.setAttribute("points", points.trim());
-          }
-          shape.appendChild(svgElement);
-
-          // Random position across the entire page (ensuring no overflow)
-          let randomX, randomY;
-          const margin = 80;  // Increase margin to avoid overlap
-
-          const cornerProbability = 0.3;
-          if (Math.random() < cornerProbability) {
-            const corner = Math.floor(Math.random() * 4);
-            switch (corner) {
-              case 0: // Top-left
-                randomX = Math.random() * margin;
-                randomY = Math.random() * margin;
-                break;
-              case 1: // Top-right
-                randomX = window.innerWidth - size - Math.random() * margin;
-                randomY = Math.random() * margin;
-                break;
-              case 2: // Bottom-left
-                randomX = Math.random() * margin;
-                randomY = window.innerHeight - size - Math.random() * margin;
-                break;
-              case 3: // Bottom-right
-                randomX = window.innerWidth - size - Math.random() * margin;
-                randomY = window.innerHeight - size - Math.random() * margin;
-                break;
-            }
-          } else {
-            // For random positions
-            randomX = Math.random() * (window.innerWidth - size);
-            randomY = Math.random() * (window.innerHeight - size);
-          }
-
-          // Check for overlap with existing shapes (basic collision detection)
-          let overlap = false;
-          for (let j = 0; j < shapes.length; j++) {
-            const existingShape = shapes[j];
-            const dx = randomX - existingShape.initialX;
-            const dy = randomY - existingShape.initialY;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < size + 20) { // If shapes are too close
-              overlap = true;
-              break;
-            }
-          }
-
-          // Retry if there was overlap
-          if (overlap) {
-            i--;
-            continue;  // Skip this iteration and try again
-          }
-
-          shape.style.left = `${randomX}px`;
-          shape.style.top = `${randomY}px`;
-          shape.style.position = 'absolute';
-
-          // Set hollow shape: Add stroke and remove fill, make stroke thicker
-          const color = `hsl(${Math.random() * 360}, 100%, 60%)`;
-          svgElement.setAttribute("stroke", color);
-          svgElement.setAttribute("fill", "none"); // Hollow shapes
-          svgElement.setAttribute("stroke-width", 2); // Thicker stroke
-
-          container.appendChild(shape);
-          shapes.push({ element: shape, initialX: randomX, initialY: randomY });
-        }
-      });
-    };
-
-
-    const moveShapesWithMouse = () => {
-      shapes.forEach(shape => {
-        const dx = mouseX - shape.initialX;
-        const dy = mouseY - shape.initialY;
-
-        // Move shape toward mouse gradually
-        shape.element.style.left = `${shape.initialX + dx * 0.05}px`;
-        shape.element.style.top = `${shape.initialY + dy * 0.05}px`;
-      });
-    };
-
-    // Add event listener to track mouse position
-    const updateMousePosition = (event) => {
-      mouseX = event.clientX;
-      mouseY = event.clientY;
-      isMouseMoving = true;
-    };
-
-    onMounted(() => {
-      createShapes();
-      window.addEventListener("mousemove", updateMousePosition);
-
-      // Update shapes' positions if the mouse is moving
-      setInterval(() => {
-        if (isMouseMoving) {
-          moveShapesWithMouse();
-        }
-      }, 16); // Update 60 times per second (60fps)
-    });
-
+  data() {
     return {
-      resumeUrl: resume,};
-  },
+      resumeUrl: resume,
+    };
+  }
 };
 </script>
 
@@ -370,17 +203,6 @@ ul li:hover {
   transform: scale(1.1);
 }
 
-/* Background shapes styling */
-.background-shapes {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 0; /* Ensure the background shapes are behind content */
-  background: transparent;
-}
 
 .right-column, .middle-column, .left-column {
   z-index: 10;
@@ -391,4 +213,33 @@ ul li:hover {
   stroke: white;
   fill: none; /* Hollow shapes */
 }
+
+@media (max-width: 768px) {
+  .right-column {
+    display: none; /* Hides the social icons in mobile view */
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .left-column img {
+    max-width: 80%;
+  }
+
+  .middle-column {
+    max-width: 90%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
 </style>
